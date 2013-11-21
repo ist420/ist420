@@ -1,0 +1,16 @@
+%table.table-hover.table
+  %thead
+    %tr
+      %th
+        Project ID
+      %th
+        Project Name
+  %tbody
+    - @projects.each do |p| 
+      %tr
+        %td
+          = p.id
+        %td
+          = p.name
+       
+  

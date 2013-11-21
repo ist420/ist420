@@ -1,0 +1,25 @@
+:javascript
+  $(document).ready(function() {
+      update = function(){
+          $('#clock').html("Hello");
+      });
+      update();
+      setInterval(update, 1000);
+  });
+Add new timestamp
+.row-fluid
+  #clock
+    = simple_form_for @timestamp, html: {class: 'form-horizontal' } do |f| 
+      .control-group
+        .controls
+          =f.association :project
+      .control-group
+        .controls
+          =f.association :employee
+      .control-group
+        .controls
+          =f.submit "Add new Timestmp", id: "add_timestamp", class: "btn btn-primary"
+
+            
+
+

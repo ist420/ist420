@@ -1,0 +1,20 @@
+%table.table-hover.table
+  %thead
+    %tr
+      %th
+        Timestamp Time
+      %th
+        Employee Name
+      %th
+        Employee ID
+  %tbody
+    - @timestamps.each do |t| 
+      %tr
+        %td
+          = t.created_at
+        %td
+          = Employee.find(t.employee_id).name
+        %td
+          = t.employee_id
+       
+  

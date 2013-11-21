@@ -1,4 +1,6 @@
 Ist420::Application.routes.draw do
+    resources :timestamps, :employees, :projects, :clients
+    root to: "timestamps#new"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

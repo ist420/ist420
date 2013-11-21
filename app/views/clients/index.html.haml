@@ -1,0 +1,16 @@
+%table.table-hover.table
+  %thead
+    %tr
+      %th
+        Client ID
+      %th
+        Client Name
+  %tbody
+    - @clients.each do |c| 
+      %tr
+        %td
+          = c.id
+        %td
+          = c.name
+       
+  

@@ -1,0 +1,16 @@
+Add new Client
+.row-fluid
+  = simple_form_for @client, class: "form-horizontal" do |f| 
+    .employee-create
+      .offset2
+      .span8
+        .control-group
+          .controls
+            = f.input :name
+        .control-group
+          .controls
+            =f.submit "Add new Client", class: "btn btn-primary"
+
+            
+
+

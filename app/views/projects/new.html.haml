@@ -1,0 +1,17 @@
+Add new Project
+.row-fluid
+  = simple_form_for @project, class: "form-horizontal" do |f| 
+    .employee-create
+      .offset2
+      .span8
+        .control-group
+          .controls
+            = f.input :name
+
+        .control-group
+          .controls
+            =f.submit "Add new Project", class: "btn btn-primary"
+
+            
+
+
