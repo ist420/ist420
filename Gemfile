@@ -5,7 +5,9 @@ gem 'rails', '~> 4.0.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :development, :test do
+    gem 'sqlite3'
+end
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
@@ -26,10 +28,15 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
+ #
+group :production do
+    gem 'pg'
+    gem 'rails_12factor'
+end
 
 # Use unicorn as the app server
 # gem 'unicorn'

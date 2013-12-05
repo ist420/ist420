@@ -10,28 +10,32 @@
     = render 'layouts/header'
     .container-fluid
       .row
-        %aside.span4
-          %ul.nav.nav-list.nav-stacked
-            %li.nav-header Employees
-            %li
-              = link_to "List Employees", employees_path
-            %li
-              = link_to "Add Employee", new_employee_path
-            %li.nav-header Timestamps
-            %li
-              = link_to "List Timestamp", timestamps_path
-            %li
-              = link_to "Add Timestamp", new_timestamp_path
-            %li.nav-header Projects
-            %li
-              = link_to "List Projects", projects_path
-            %li
-              = link_to "Add Project", new_project_path
-            %li.nav-header Clients
-            %li
-              = link_to "List Clients", clients_path
-            %li
-              = link_to "Add Clients", new_client_path
-        .span8
-          = render "shared/flashes"
+        - if signed_in?
+          %aside.span4
+            %ul.nav.nav-list.nav-stacked
+              %li.nav-header Employees
+              %li
+                = link_to "List Employees", employees_path
+              %li
+                = link_to "Add Employee", new_employee_path
+              %li.nav-header Timestamps
+              %li
+                = link_to "List Timestamp", timestamps_path
+              %li
+                = link_to "Add Timestamp", new_timestamp_path
+              %li.nav-header Projects
+              %li
+                = link_to "List Projects", projects_path
+              %li
+                = link_to "Add Project", new_project_path
+              %li.nav-header Clients
+              %li
+                = link_to "List Clients", clients_path
+              %li
+                = link_to "Add Clients", new_client_path
+          .span8
+            = render "shared/flashes"
+            = yield
+        - else
           = yield
+

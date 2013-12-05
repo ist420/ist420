@@ -1,6 +1,9 @@
 Ist420::Application.routes.draw do
     resources :timestamps, :employees, :projects, :clients
-    root to: "timestamps#new"
+    root to: "static_pages#home"
+    resources :sessions, only: [:new, :create, :destroy]
+    match '/signin', to: 'sessions#new', via: 'get'
+    match '/signout', to: 'sessions#destroy', via: 'delete'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

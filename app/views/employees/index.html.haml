@@ -5,6 +5,10 @@
         Employee ID
       %th
         Employee Name
+      %th
+        Employee Email
+      %th
+        Admin
   %tbody
     - @employees.each do |e| 
       %tr
@@ -12,5 +16,13 @@
           = e.id
         %td
           = e.name
+        %td
+          = e.email
+        %td
+          = e.admin
+        %td 
+          - if current_user.admin? && !current_user?(e) 
+            = link_to "delete", e, method: :delete,
+                data: {confirm: "You sure?" }
        
   

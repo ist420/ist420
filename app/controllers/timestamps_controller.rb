@@ -1,4 +1,6 @@
 class TimestampsController < ApplicationController
+    before_action :signed_in_user
+
     def index
         @timestamps = Timestamp.all
     end
@@ -6,7 +8,7 @@ class TimestampsController < ApplicationController
         @timestamp = Timestamp.new
     end
     def create
-        @timestamp = Timestamp.new(timestamp_params)
+        @timestamp = current_user.timestamps.new(timestamp_params)
         if @timestamp.save
             flash.now[:success] = "New Timestamp Added"
             render :new
@@ -22,6 +24,6 @@ class TimestampsController < ApplicationController
 
     private
     def timestamp_params
-            params.require(:timestamp).permit(:employee_id)
+            params.require(:timestamp).permit(:project_id)
     end
 end
