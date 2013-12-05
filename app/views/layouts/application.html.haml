@@ -11,7 +11,7 @@
     .container-fluid
       .row
         - if signed_in?
-          %aside.span4
+          %aside.span3
             %ul.nav.nav-list.nav-stacked
               %li.nav-header Employees
               %li
@@ -33,7 +33,11 @@
                 = link_to "List Clients", clients_path
               %li
                 = link_to "Add Clients", new_client_path
-          .span8
+              - if current_user.admin?
+                %li.nav-header Other
+                %li
+                  = link_to "Mass Upload", upload_timestamps_path
+          .span9
             = render "shared/flashes"
             = yield
         - else

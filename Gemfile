@@ -9,6 +9,7 @@ group :development, :test do
     gem 'sqlite3'
 end
 gem 'haml-rails'
+gem 'roo'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
@@ -16,6 +17,7 @@ gem 'simple_form', '3.0.0'
 gem 'momentjs-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
+gem 'nokogiri'
 
 # Gems used only for assets and not required
 # in production environments by default.

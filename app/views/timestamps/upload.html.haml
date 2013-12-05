@@ -1,0 +1,7 @@
+%h1 Mass Upload
+
+= form_for(:uploaded_file, url: {action: 'insert'}, html: {multipart: true}) do |f|
+  = f.file_field :uploaded_file  
+  .clearfix
+  = f.submit "Insert XML" ,class: "btn  btn-primary", style: "margin-top: 20px;"
+

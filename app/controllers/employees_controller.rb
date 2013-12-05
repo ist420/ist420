@@ -18,12 +18,15 @@ class EmployeesController < ApplicationController
         end
             
     end
-    
+
     def destroy
         Employee.find(params[:id]).destroy
         flash[:success] = "Employee deleted."
         redirect_to employees_url
     end
+
+
+    
 
 
     private

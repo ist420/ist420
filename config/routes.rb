@@ -1,10 +1,14 @@
 Ist420::Application.routes.draw do
-    resources :timestamps, :employees, :projects, :clients
+    resources :employees, :projects, :clients
+    resources :timestamps,  only: [:create, :index, :new, :edit, :update, :destroy]
     root to: "static_pages#home"
     resources :sessions, only: [:new, :create, :destroy]
     match '/signin', to: 'sessions#new', via: 'get'
     match '/signout', to: 'sessions#destroy', via: 'delete'
+    match '/timestamps/upload', to: 'timestamps#upload', as: 'upload_timestamps', via: 'get'
+    match '/timestamps/upload', to: 'timestamps#insert', as: 'insert', via: 'post'
   # The priority is based upon order of creation:
+    #
   # first created -> highest priority.
 
   # Sample of regular route:

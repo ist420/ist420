@@ -1,0 +1,18 @@
+%h1 Close Timestamp
+.row-fluid
+  #clock
+  = simple_form_for @timestamp do |f| 
+    .control-group
+      .controls
+        =f.association :project, disabled: true
+    .control-group
+      .controls
+        =f.association :client, disabled: true
+        =f.hidden_field :end_time, value: Time.now
+    .control-group
+      .controls
+        =f.submit "Close Timestamp", id: "add_timestamp", class: "btn btn-primary"
+
+            
+
+

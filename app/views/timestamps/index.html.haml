@@ -7,6 +7,12 @@
         Employee Name
       %th
         Employee ID
+      %th
+        Timestamp Started
+      %th
+        Timestamp Ended
+      %th
+        Duration
   %tbody
     - @timestamps.each do |t| 
       %tr
@@ -16,5 +22,17 @@
           = Employee.find(t.employee_id).name
         %td
           = t.employee_id
+        %td
+          = t.start_time
+        %td
+          = t.end_time
+        %td
+          - if t.closed?
+            = t.duration[:hours] 
+            Hours
+            = t.duration[:minutes]
+            Minutes
+            = t.duration[:seconds]
+            Seconds
        
   
