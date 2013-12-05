@@ -24,7 +24,11 @@ def convert_xml(file)
     xml.css('time_report').each do |node|
             children = node.children
             e_id = children.css('employee_ID').inner_text
-            c_id = children.css('client_ID').inner_text
+            if children.css('client_ID').inner_text.blank? && !children.css('client_name').inner_text.blank?
+                c_id = Client.where(name: children.css('client_name').inner_text)
+            else
+                c_id = children.css('client_ID').inner_text
+            end
             p_id = children.css('project_ID').inner_text
             start = children.css('time_record').children.css('project_start_time').inner_text.to_time
             e_time = children.css('time_record').children.css('project_end_time').inner_text.to_time
