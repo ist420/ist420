@@ -8,6 +8,10 @@
       %th
         Employee ID
       %th
+        Project ID
+      %th
+        Client ID
+      %th
         Timestamp Started
       %th
         Timestamp Ended
@@ -22,6 +26,10 @@
           = Employee.find(t.employee_id).name
         %td
           = t.employee_id
+        %td
+          = t.project_id
+        %td
+          = t.client_id
         %td
           = t.start_time
         %td

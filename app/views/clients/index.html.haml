@@ -5,6 +5,8 @@
         Client ID
       %th
         Client Name
+      %th
+        Client Total Hours
   %tbody
     - @clients.each do |c| 
       %tr
@@ -12,5 +14,8 @@
           = c.id
         %td
           = c.name
+        %td
+          = c.sum_hours 
+          Hours
        
   

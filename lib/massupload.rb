@@ -1,4 +1,16 @@
 require 'roo'
+def endtime(date,starttime,endtime)
+    if endtime > starttime
+        end_time = DateTime.new(date.year,date.month,date.day,endtime.hour,endtime.min,endtime.sec)
+    else
+        end_time = DateTime.new(date.year,date.month,date.day + 1,endtime.hour,endtime.min,endtime.sec)
+    end
+end_time
+
+
+
+end
+
 def convert_xml(file)
     if file.respond_to?(:read)
         xml_contents = file.read
@@ -7,6 +19,7 @@ def convert_xml(file)
     else
         logger.error "Bad file_data: #{file.class.name}: #{file.inspect}"
     end
+    errors = Array.new
     xml = Nokogiri::XML(xml_contents)
     xml.css('time_report').each do |node|
             children = node.children
@@ -17,8 +30,12 @@ def convert_xml(file)
             e_time = children.css('time_record').children.css('project_end_time').inner_text.to_time
             date = children.css('date_created').inner_text.to_date
             start_time = DateTime.new(date.year,date.month, date.day, start.hour, start.min, start.sec)
-            end_time = DateTime.new(date.year,date.month,date.day,e_time.hour,e_time.min,e_time.sec)
+            end_time = endtime(date,start,e_time)
 
+            project = Project.new(
+                id: p_id,
+                name: "Project #{p_id}"
+            )
             client = Client.new(
                 id: c_id,
                 name: children.css('client_name').inner_text
@@ -36,23 +53,30 @@ def convert_xml(file)
                 client_id: c_id,
                 project_id: p_id
                                          )
+            if project.save
+            else
+                errors << project.errors.full_messages.to_sentence
+            end
             if client.save
             else
-                flash[:error] = client.errors.full_messages.to_sentence
+                errors << client.errors.full_messages.to_sentence
             end
 
             if employee.save
             else
-                flash[:error] = employee.errors.full_messages.to_sentence
+                errors <<  employee.errors.full_messages.to_sentence
             end
             if timestamp.save
 
             else
-                flash[:error] = timestamp.errors.full_messages.to_sentence
+                errors << timestamp.errors.full_messages.to_sentence
             end
 
 
         end
+    if !errors.nil?
+        #flash.now[:error] = errors
+    end
 
     end
 def convert_xls(file)

@@ -11,7 +11,7 @@
     .container-fluid
       .row
         - if signed_in?
-          %aside.span3
+          %aside.span2
             %ul.nav.nav-list.nav-stacked
               %li.nav-header Employees
               %li
@@ -37,7 +37,7 @@
                 %li.nav-header Other
                 %li
                   = link_to "Mass Upload", upload_timestamps_path
-          .span9
+          .span10
             = render "shared/flashes"
             = yield
         - else
